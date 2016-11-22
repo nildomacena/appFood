@@ -94,13 +94,10 @@ export var MyApp = (function () {
             StatusBar.styleDefault();
             _this.events.subscribe('user:created', function (user) {
                 _this.user = user[0];
-                console.log('user no app.component: ', _this.user);
             });
         });
     }
     MyApp.prototype.ionViewDidLoad = function () {
-        /*this.fire.loginWithGoogle()
-          .subscribe(user => this.user = user);*/
     };
     MyApp.prototype.openPage = function (page) {
         // Reset the content nav to have just this page

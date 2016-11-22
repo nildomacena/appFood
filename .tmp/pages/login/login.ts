@@ -16,7 +16,6 @@ export class LoginPage {
   constructor(public nav: NavController, public fire: FireService, public events: Events) {
     this.events.subscribe('user:created', user =>{
         this.user = user[0];
-        console.log('user no loginpage: ',this.user)
         this.nav.setRoot(HomePage);
     })
   }

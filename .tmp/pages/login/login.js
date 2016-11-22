@@ -13,7 +13,6 @@ export var LoginPage = (function () {
         this.user = new User();
         this.events.subscribe('user:created', function (user) {
             _this.user = user[0];
-            console.log('user no loginpage: ', _this.user);
             _this.nav.setRoot(HomePage);
         });
     }

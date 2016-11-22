@@ -119,10 +119,10 @@ export class MyApp {
         this.user = user[0];
       })
     });
+    
   }
   ionViewDidLoad(){
-    /*this.fire.loginWithGoogle()
-      .subscribe(user => this.user = user);*/
+    
   }
   openPage(page) {
     // Reset the content nav to have just this page

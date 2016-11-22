@@ -2,6 +2,7 @@ import { User } from './../model/user';
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { AngularFireModule } from 'angularfire2';
 
 // import services
 import { MenuService } from '../services/menu-service';
@@ -33,6 +34,14 @@ import {SettingPage} from '../pages/setting/setting';
 import {UserPage} from '../pages/user/user';
 // end import pages
 
+const config = {
+    apiKey: "AIzaSyANDjWZuEIbS9RZ38BLiNKpdCjO-co0XDc",
+    authDomain: "appfood-150302.firebaseapp.com",
+    databaseURL: "https://appfood-150302.firebaseio.com",
+    storageBucket: "appfood-150302.appspot.com",
+    messagingSenderId: "157769908167"
+  };
+
 @NgModule({
   declarations: [
     MyApp,
@@ -55,7 +64,8 @@ import {UserPage} from '../pages/user/user';
     UserPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

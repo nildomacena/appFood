@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Events } from 'ionic-angular';
 import { GooglePlus } from 'ionic-native';
 import { User } from './../model/user';
+import { AngularFire } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
@@ -9,7 +10,7 @@ import 'rxjs/Rx';
 
 export class FireService {
     user: any;
-    constructor(public events: Events){ }
+    constructor(public events: Events, public af: AngularFire){ }
 
     getUser():any{
         return this.user;
@@ -18,9 +19,16 @@ export class FireService {
 
         GooglePlus.login({'webClientId': '157769908167-97grjmo237oa2s6p532fhm4vab2ano2q.apps.googleusercontent.com'})
         .then(user => {
-            this.user = user;
-            console.log('user dentro do loginwithgoogle: ',user);
-            this.events.publish('user:created',user);
+            let provider = firebase.auth.GoogleAuthProvider.credential(user.idToken);
+            firebase.auth().signInWithCredential(provider)
+                .then(data => {
+                    this.user = user;
+                    console.log('user dentro do loginwithgoogle(fibase: ',user);
+                    console.log('retorno signinwithcredential: ', data);
+
+                    this.events.publish('user:created',user);
+                })
+            
         })
         
         

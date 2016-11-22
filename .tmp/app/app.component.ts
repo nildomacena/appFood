@@ -117,13 +117,12 @@ export class MyApp {
       StatusBar.styleDefault();
       this.events.subscribe('user:created', user => {
         this.user = user[0];
-        console.log('user no app.component: ',this.user);
       })
     });
+    
   }
   ionViewDidLoad(){
-    /*this.fire.loginWithGoogle()
-      .subscribe(user => this.user = user);*/
+    
   }
   openPage(page) {
     // Reset the content nav to have just this page
