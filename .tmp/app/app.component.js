@@ -1,3 +1,4 @@
+import { User } from './../model/user';
 import { FireService } from './../services/fire-service';
 import { Component } from '@angular/core';
 import { Platform, Events } from 'ionic-angular';
@@ -83,16 +84,13 @@ export var MyApp = (function () {
                 component: LoginPage
             },
         ];
-        this.user = {
-            displayName: '',
-            imageUrl: ''
-        };
+        this.user = new User();
         this.rootPage = LoginPage;
         platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             StatusBar.styleDefault();
-            _this.events.subscribe('user:created', function (user) {
+            _this.events.subscribe('user:registered', function (user) {
                 _this.user = user[0];
             });
         });

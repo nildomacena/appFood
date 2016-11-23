@@ -21,10 +21,10 @@
     <ion-grid>
       <ion-row>
         <ion-col width-33 text-center>
-          <img class="profile-picture circle" [src]="user.userImageUrl">
+          <img class="profile-picture circle" [src]="user.imageUrl">
         </ion-col>
         <ion-col width-66>
-          <h4 padding no-margin color="light">{{user.userName}}</h4>
+          <h4 padding no-margin color="light">{{user.displayName}}</h4>
 
         </ion-col>
       </ion-row>
@@ -36,7 +36,7 @@
 
     <ion-item>
       <ion-label stacked color="primary">Name</ion-label>
-      <ion-input type="text" [value]="user.userName"></ion-input>
+      <ion-input type="text" [value]="user.displayName"></ion-input>
     </ion-item>
 
     <ion-item>

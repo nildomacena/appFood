@@ -1,7 +1,7 @@
 export var User = (function () {
-    function User(userName, userImageUrl, email) {
-        this.userName = userName;
-        this.userImageUrl = userImageUrl;
+    function User(displayName, imageUrl, email) {
+        this.displayName = displayName;
+        this.imageUrl = imageUrl;
         this.email = email;
     }
     return User;

@@ -14,7 +14,7 @@ import { FireService } from '../../services/fire-service';
 export class LoginPage {
   user: User = new User();
   constructor(public nav: NavController, public fire: FireService, public events: Events) {
-    this.events.subscribe('user:created', user =>{
+    this.events.subscribe('user:registered', user =>{
         this.user = user[0];
         this.nav.setRoot(HomePage);
     })

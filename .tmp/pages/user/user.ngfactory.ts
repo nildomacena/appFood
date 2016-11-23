@@ -792,7 +792,7 @@ class _View_UserPage0 extends import1.AppView<import0.UserPage> {
     const currVal_12:any = 'primary';
     this._Label_43_3.check_color(currVal_12,throwOnChange,false);
     this._Label_43_3.detectChangesInternal(this,this._el_43,throwOnChange);
-    const currVal_13:any = this.context.user.userName;
+    const currVal_13:any = this.context.user.displayName;
     this._TextInput_46_4.check_value(currVal_13,throwOnChange,false);
     const currVal_14:any = 'text';
     this._TextInput_46_4.check_type(currVal_14,throwOnChange,false);
@@ -924,12 +924,12 @@ class _View_UserPage0 extends import1.AppView<import0.UserPage> {
       this.renderer.setElementClass(this._el_15,'statusbar-padding',currVal_8);
       this._expr_8 = currVal_8;
     }
-    const currVal_9:any = this.context.user.userImageUrl;
+    const currVal_9:any = this.context.user.imageUrl;
     if (import4.checkBinding(throwOnChange,this._expr_9,currVal_9)) {
       this.renderer.setElementProperty(this._el_26,'src',this.viewUtils.sanitizer.sanitize(import54.SecurityContext.URL,currVal_9));
       this._expr_9 = currVal_9;
     }
-    const currVal_11:any = import4.interpolate(1,'',this.context.user.userName,'');
+    const currVal_11:any = import4.interpolate(1,'',this.context.user.displayName,'');
     if (import4.checkBinding(throwOnChange,this._expr_11,currVal_11)) {
       this.renderer.setText(this._text_32,currVal_11);
       this._expr_11 = currVal_11;

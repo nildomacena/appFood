@@ -1,16 +1,15 @@
+import { UserService } from './user-service';
 import { Injectable } from "@angular/core";
 import { Events } from 'ionic-angular';
 import { GooglePlus, Facebook } from 'ionic-native';
 import { User } from './../model/user';
 import { AngularFire } from 'angularfire2';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/Rx';
 
 @Injectable()
 
 export class FireService {
     user: any;
-    constructor(public events: Events, public af: AngularFire){ }
+    constructor(public events: Events, public af: AngularFire, public userService: UserService){ }
 
     getUser():any{
         return this.user;
@@ -18,12 +17,18 @@ export class FireService {
 
     loginWithFacebook(){
         console.log('loginWithFacebook');
-        Facebook.login(['user_friends', 'public_profile'])
+        Facebook.login(['user_friends', 'public_profile', 'email'])
             .then(userFacebook => {
                 let provider = firebase.auth.FacebookAuthProvider.credential(userFacebook.authResponse.accessToken);
-                firebase.auth().signInWithCredential(provider);
-                this.events.publish('user:created', userFacebook)
-                
+                firebase.auth().signInWithCredential(provider)
+                    .then(data => {
+                        console.log(data);
+                        this.events.publish('user:created', firebase.auth().currentUser)
+                    })
+                    .catch(error => {
+                        console.log(error['code'] == 'auth/account-exists-with-different-credential');
+                        this.events.publish('user:created', firebase.auth().currentUser);
+                    })
             })
     }
 

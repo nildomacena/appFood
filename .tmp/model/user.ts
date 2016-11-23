@@ -1,4 +1,4 @@
 export class User{
-    constructor(public userName?:string, public userImageUrl?:string, public email? :string ){ }
+    constructor(public displayName?:string, public imageUrl?:string, public email? :string ){ }
     
 }

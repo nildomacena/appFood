@@ -105,19 +105,16 @@ export class MyApp {
 
   ];
 
-  user: any = {
-    displayName: '',
-    imageUrl: ''
-  };
+  user: User = new User();
   constructor(public platform: Platform, public fire: FireService, public events: Events) {
     this.rootPage = LoginPage;
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
-      this.events.subscribe('user:created', user => {
+      this.events.subscribe('user:registered', user => {
         this.user = user[0];
-      })
+      });
     });
     
   }

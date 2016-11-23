@@ -697,7 +697,7 @@ var _View_UserPage0 = (function (_super) {
         var currVal_12 = 'primary';
         this._Label_43_3.check_color(currVal_12, throwOnChange, false);
         this._Label_43_3.detectChangesInternal(this, this._el_43, throwOnChange);
-        var currVal_13 = this.context.user.userName;
+        var currVal_13 = this.context.user.displayName;
         this._TextInput_46_4.check_value(currVal_13, throwOnChange, false);
         var currVal_14 = 'text';
         this._TextInput_46_4.check_type(currVal_14, throwOnChange, false);
@@ -853,12 +853,12 @@ var _View_UserPage0 = (function (_super) {
             this.renderer.setElementClass(this._el_15, 'statusbar-padding', currVal_8);
             this._expr_8 = currVal_8;
         }
-        var currVal_9 = this.context.user.userImageUrl;
+        var currVal_9 = this.context.user.imageUrl;
         if (import4.checkBinding(throwOnChange, this._expr_9, currVal_9)) {
             this.renderer.setElementProperty(this._el_26, 'src', this.viewUtils.sanitizer.sanitize(import54.SecurityContext.URL, currVal_9));
             this._expr_9 = currVal_9;
         }
-        var currVal_11 = import4.interpolate(1, '', this.context.user.userName, '');
+        var currVal_11 = import4.interpolate(1, '', this.context.user.displayName, '');
         if (import4.checkBinding(throwOnChange, this._expr_11, currVal_11)) {
             this.renderer.setText(this._text_32, currVal_11);
             this._expr_11 = currVal_11;

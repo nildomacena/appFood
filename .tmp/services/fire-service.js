@@ -1,12 +1,13 @@
+import { UserService } from './user-service';
 import { Injectable } from "@angular/core";
 import { Events } from 'ionic-angular';
 import { GooglePlus, Facebook } from 'ionic-native';
 import { AngularFire } from 'angularfire2';
-import 'rxjs/Rx';
 export var FireService = (function () {
-    function FireService(events, af) {
+    function FireService(events, af, userService) {
         this.events = events;
         this.af = af;
+        this.userService = userService;
     }
     FireService.prototype.getUser = function () {
         return this.user;
@@ -14,11 +15,18 @@ export var FireService = (function () {
     FireService.prototype.loginWithFacebook = function () {
         var _this = this;
         console.log('loginWithFacebook');
-        Facebook.login(['user_friends', 'public_profile'])
+        Facebook.login(['user_friends', 'public_profile', 'email'])
             .then(function (userFacebook) {
             var provider = firebase.auth.FacebookAuthProvider.credential(userFacebook.authResponse.accessToken);
-            firebase.auth().signInWithCredential(provider);
-            _this.events.publish('user:created', userFacebook);
+            firebase.auth().signInWithCredential(provider)
+                .then(function (data) {
+                console.log(data);
+                _this.events.publish('user:created', firebase.auth().currentUser);
+            })
+                .catch(function (error) {
+                console.log(error['code'] == 'auth/account-exists-with-different-credential');
+                _this.events.publish('user:created', firebase.auth().currentUser);
+            });
         });
     };
     FireService.prototype.loginWithGoogle = function () {
@@ -44,6 +52,7 @@ export var FireService = (function () {
     FireService.ctorParameters = [
         { type: Events, },
         { type: AngularFire, },
+        { type: UserService, },
     ];
     return FireService;
 }());

@@ -11,7 +11,7 @@ export var LoginPage = (function () {
         this.fire = fire;
         this.events = events;
         this.user = new User();
-        this.events.subscribe('user:created', function (user) {
+        this.events.subscribe('user:registered', function (user) {
             _this.user = user[0];
             _this.nav.setRoot(HomePage);
         });

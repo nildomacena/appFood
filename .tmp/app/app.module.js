@@ -1,3 +1,4 @@
+import { UserService } from './../services/user-service';
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -91,7 +92,8 @@ export var AppModule = (function () {
                         CartService,
                         PostService,
                         ChatService,
-                        FireService
+                        FireService,
+                        UserService
                     ]
                 },] },
     ];

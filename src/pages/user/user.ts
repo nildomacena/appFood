@@ -14,8 +14,8 @@ export class UserPage {
   constructor(public nav: NavController, public events: Events, public fire: FireService) {
     let userData = this.fire.getUser();
     console.log(userData);
-      this.user.userName = userData.displayName;
-      this.user.userImageUrl = userData.imageUrl;
+      this.user.displayName = userData.displayName;
+      this.user.imageUrl = userData.imageUrl;
       this.user.email = userData.email;
       console.log('this.user: ',this.user)
     
