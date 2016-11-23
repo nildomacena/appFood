@@ -37,6 +37,11 @@
 		9D152ACA1B814763B7908FEA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4A826BCB9D438F9418ABD8 /* libz.tbd */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3A98B991CCA54F4593502186 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B8D8D250DB04486C8E5DE971 /* libz.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C8C7A5E493004F2D8303D321 /* ionic2_restaurant.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 7C9D1B922C714886859A6CED /* ionic2_restaurant.entitlements */; };
+		39BEFD466AED4BDFBA0197FA /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A28E3DD27B2443C9B42F6DF1 /* FacebookConnectPlugin.m */; };
+		519D8A779FFE4D2BBC7B6F72 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D853AEADBD2B4ECE9A2F4DFC /* Bolts.framework */; };
+		FCF6C30035C74119B011E276 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CB0C911B5324F43B959EA42 /* FBSDKCoreKit.framework */; };
+		9EC2119B6B284FFDADA56E78 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 033BB92E520B493F86D9FA0D /* FBSDKLoginKit.framework */; };
+		D4F8AC0CEBA74C308B0C17B8 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EEEB51FF08F4F9DAD34B1E9 /* FBSDKShareKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +110,12 @@
 		5A4A826BCB9D438F9418ABD8 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 		B8D8D250DB04486C8E5DE971 /* libz.dylib */ = {isa = PBXFileReference; name = "libz.dylib"; path = "usr/lib/libz.dylib"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = compiled.mach-o.dylib; explicitFileType = undefined; includeInIndex = 0; };
 		7C9D1B922C714886859A6CED /* ionic2_restaurant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = unknown; name = "ionic2_restaurant.entitlements"; path = "ionic2_restaurant.entitlements"; sourceTree = "<group>"; fileEncoding = 4; };
+		A28E3DD27B2443C9B42F6DF1 /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; name = "FacebookConnectPlugin.m"; path = "cordova-plugin-facebook4/FacebookConnectPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		A84727C7D9E54A318CF1B4A9 /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; name = "FacebookConnectPlugin.h"; path = "cordova-plugin-facebook4/FacebookConnectPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		D853AEADBD2B4ECE9A2F4DFC /* Bolts.framework */ = {isa = PBXFileReference; name = "Bolts.framework"; path = "ionic2_restaurant/Plugins/cordova-plugin-facebook4/Bolts.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		5CB0C911B5324F43B959EA42 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; name = "FBSDKCoreKit.framework"; path = "ionic2_restaurant/Plugins/cordova-plugin-facebook4/FBSDKCoreKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		033BB92E520B493F86D9FA0D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; name = "FBSDKLoginKit.framework"; path = "ionic2_restaurant/Plugins/cordova-plugin-facebook4/FBSDKLoginKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		0EEEB51FF08F4F9DAD34B1E9 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; name = "FBSDKShareKit.framework"; path = "ionic2_restaurant/Plugins/cordova-plugin-facebook4/FBSDKShareKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +137,10 @@
 				DCE3BDE34B234AABB7708FA5 /* SystemConfiguration.framework in Frameworks */,
 				9D152ACA1B814763B7908FEA /* libz.tbd in Frameworks */,
 				3A98B991CCA54F4593502186 /* libz.dylib in Frameworks */,
+				519D8A779FFE4D2BBC7B6F72 /* Bolts.framework in Frameworks */,
+				FCF6C30035C74119B011E276 /* FBSDKCoreKit.framework in Frameworks */,
+				9EC2119B6B284FFDADA56E78 /* FBSDKLoginKit.framework in Frameworks */,
+				D4F8AC0CEBA74C308B0C17B8 /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +225,10 @@
 				EED088E26E1342BE9F42176F /* SystemConfiguration.framework */,
 				5A4A826BCB9D438F9418ABD8 /* libz.tbd */,
 				B8D8D250DB04486C8E5DE971 /* libz.dylib */,
+				D853AEADBD2B4ECE9A2F4DFC /* Bolts.framework */,
+				5CB0C911B5324F43B959EA42 /* FBSDKCoreKit.framework */,
+				033BB92E520B493F86D9FA0D /* FBSDKLoginKit.framework */,
+				0EEEB51FF08F4F9DAD34B1E9 /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -249,6 +268,8 @@
 				0222FD04B9E947AF84FB2E99 /* IonicKeyboard.h */,
 				3334721684E242B7B5E1BFF4 /* GooglePlus.m */,
 				56BA762420A1471EA6552B24 /* GooglePlus.h */,
+				A28E3DD27B2443C9B42F6DF1 /* FacebookConnectPlugin.m */,
+				A84727C7D9E54A318CF1B4A9 /* FacebookConnectPlugin.h */,
 			);
 			name = Plugins;
 			path = "ionic2_restaurant/Plugins";
@@ -369,6 +390,7 @@
 				CDF90B44025C4FA69CDF2F10 /* CDVStatusBar.m in Sources */,
 				8797883ED22F43D389DFB6FD /* IonicKeyboard.m in Sources */,
 				21DCBD352C1240409C2D6CA8 /* GooglePlus.m in Sources */,
+				39BEFD466AED4BDFBA0197FA /* FacebookConnectPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +432,10 @@
 					"\"ionic2_restaurant/Plugins/cordova-plugin-googleplus\"",
 					"\"ionic2_restaurant/Plugins/cordova-plugin-googleplus\"",
 					"\"ionic2_restaurant/Plugins/cordova-plugin-googleplus\"",
+					"\"ionic2_restaurant/Plugins/cordova-plugin-facebook4\"",
+					"\"ionic2_restaurant/Plugins/cordova-plugin-facebook4\"",
+					"\"ionic2_restaurant/Plugins/cordova-plugin-facebook4\"",
+					"\"ionic2_restaurant/Plugins/cordova-plugin-facebook4\"",
 				);
 				CODE_SIGN_ENTITLEMENTS = "ionic2_restaurant/Resources/ionic2_restaurant.entitlements";
 			};
@@ -440,6 +466,10 @@
 					"\"ionic2_restaurant/Plugins/cordova-plugin-googleplus\"",
 					"\"ionic2_restaurant/Plugins/cordova-plugin-googleplus\"",
 					"\"ionic2_restaurant/Plugins/cordova-plugin-googleplus\"",
+					"\"ionic2_restaurant/Plugins/cordova-plugin-facebook4\"",
+					"\"ionic2_restaurant/Plugins/cordova-plugin-facebook4\"",
+					"\"ionic2_restaurant/Plugins/cordova-plugin-facebook4\"",
+					"\"ionic2_restaurant/Plugins/cordova-plugin-facebook4\"",
 				);
 				CODE_SIGN_ENTITLEMENTS = "ionic2_restaurant/Resources/ionic2_restaurant.entitlements";
 			};

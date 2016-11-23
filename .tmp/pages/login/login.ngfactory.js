@@ -316,8 +316,9 @@ var _View_LoginPage0 = (function (_super) {
         var disposable_0 = this.renderer.listen(this._el_42, 'click', this.eventHandler(this._handle_click_42_0.bind(this)));
         var disposable_1 = this.renderer.listen(this._el_48, 'click', this.eventHandler(this._handle_click_48_0.bind(this)));
         this._expr_17 = import7.UNINITIALIZED;
-        this._expr_22 = import7.UNINITIALIZED;
-        var disposable_2 = this.renderer.listen(this._el_62, 'click', this.eventHandler(this._handle_click_62_0.bind(this)));
+        var disposable_2 = this.renderer.listen(this._el_53, 'click', this.eventHandler(this._handle_click_53_0.bind(this)));
+        this._expr_23 = import7.UNINITIALIZED;
+        var disposable_3 = this.renderer.listen(this._el_62, 'click', this.eventHandler(this._handle_click_62_0.bind(this)));
         this.init([], [
             this._text_0,
             this._el_1,
@@ -390,7 +391,8 @@ var _View_LoginPage0 = (function (_super) {
         ], [
             disposable_0,
             disposable_1,
-            disposable_2
+            disposable_2,
+            disposable_3
         ], []);
         return null;
     };
@@ -511,20 +513,20 @@ var _View_LoginPage0 = (function (_super) {
         var currVal_16 = 'logo-googleplus';
         this._Icon_50_3.check_md(currVal_16, throwOnChange, false);
         this._Icon_50_3.detectChangesInternal(this, this._el_50, throwOnChange);
-        var currVal_18 = '';
-        this._Button_53_4.check_block(currVal_18, throwOnChange, false);
-        var currVal_19 = 'fb-color';
-        this._Button_53_4.check_color(currVal_19, throwOnChange, false);
+        var currVal_19 = '';
+        this._Button_53_4.check_block(currVal_19, throwOnChange, false);
+        var currVal_20 = 'fb-color';
+        this._Button_53_4.check_color(currVal_20, throwOnChange, false);
         if (this._Button_53_4.detectChangesInternal(this, this._el_53, throwOnChange)) {
             this._appEl_53.componentView.markAsCheckOnce();
         }
-        var currVal_20 = 'logo-facebook';
-        this._Icon_55_3.check_ios(currVal_20, throwOnChange, false);
         var currVal_21 = 'logo-facebook';
-        this._Icon_55_3.check_md(currVal_21, throwOnChange, false);
+        this._Icon_55_3.check_ios(currVal_21, throwOnChange, false);
+        var currVal_22 = 'logo-facebook';
+        this._Icon_55_3.check_md(currVal_22, throwOnChange, false);
         this._Icon_55_3.detectChangesInternal(this, this._el_55, throwOnChange);
-        var currVal_24 = 'light';
-        this._Typography_62_3.check_color(currVal_24, throwOnChange, false);
+        var currVal_25 = 'light';
+        this._Typography_62_3.check_color(currVal_25, throwOnChange, false);
         this._Typography_62_3.detectChangesInternal(this, this._el_62, throwOnChange);
         this.detectContentChildrenChanges(throwOnChange);
         if (!throwOnChange) {
@@ -581,10 +583,10 @@ var _View_LoginPage0 = (function (_super) {
             this.renderer.setElementClass(this._el_50, 'hide', currVal_17);
             this._expr_17 = currVal_17;
         }
-        var currVal_22 = this._Icon_55_3.context._hidden;
-        if (import4.checkBinding(throwOnChange, this._expr_22, currVal_22)) {
-            this.renderer.setElementClass(this._el_55, 'hide', currVal_22);
-            this._expr_22 = currVal_22;
+        var currVal_23 = this._Icon_55_3.context._hidden;
+        if (import4.checkBinding(throwOnChange, this._expr_23, currVal_23)) {
+            this.renderer.setElementClass(this._el_55, 'hide', currVal_23);
+            this._expr_23 = currVal_23;
         }
         this.detectViewChildrenChanges(throwOnChange);
     };
@@ -604,6 +606,11 @@ var _View_LoginPage0 = (function (_super) {
     _View_LoginPage0.prototype._handle_click_48_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
         var pd_0 = (this.context.loginWithGoogle() !== false);
+        return (true && pd_0);
+    };
+    _View_LoginPage0.prototype._handle_click_53_0 = function ($event) {
+        this.markPathToRootAsCheckOnce();
+        var pd_0 = (this.context.loginWithFacebook() !== false);
         return (true && pd_0);
     };
     _View_LoginPage0.prototype._handle_click_62_0 = function ($event) {

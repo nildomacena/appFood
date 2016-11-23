@@ -27,6 +27,9 @@ export var LoginPage = (function () {
     LoginPage.prototype.loginWithGoogle = function () {
         this.fire.loginWithGoogle();
     };
+    LoginPage.prototype.loginWithFacebook = function () {
+        this.fire.loginWithFacebook();
+    };
     LoginPage.decorators = [
         { type: Component, args: [{
                     selector: 'page-login',

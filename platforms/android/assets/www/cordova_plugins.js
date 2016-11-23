@@ -40,6 +40,14 @@ module.exports = [
         "clobbers": [
             "window.plugins.googleplus"
         ]
+    },
+    {
+        "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
+        "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
+        "pluginId": "cordova-plugin-facebook4",
+        "clobbers": [
+            "facebookConnectPlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -51,7 +59,8 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.2.0",
     "cordova-plugin-whitelist": "1.3.0",
     "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-googleplus": "5.1.1"
+    "cordova-plugin-googleplus": "5.1.1",
+    "cordova-plugin-facebook4": "1.7.4"
 };
 // BOTTOM OF METADATA
 });

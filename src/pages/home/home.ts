@@ -1,3 +1,4 @@
+import { FireService } from './../../services/fire-service';
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 
@@ -20,12 +21,15 @@ export class HomePage {
   // list of categories
   public categories: any;
   user:any;
-  constructor(public nav: NavController, public menuService: MenuService, public params: NavParams) {
+  constructor(public nav: NavController, public menuService: MenuService, public params: NavParams, public fire: FireService) {
     // set data for categories
     this.categories = menuService.getAll();
     this.user = this.params.get('user');
   }
 
+  ionViewDidLoad(){
+    this.fire.getUserInfo().then(user => console.log('getUserInfo: ',user));
+  }
   // view a category
   viewCategory(categoryId) {
     this.nav.push(CategoryPage, {id: categoryId});

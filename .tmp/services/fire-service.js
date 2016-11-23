@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Events } from 'ionic-angular';
-import { GooglePlus } from 'ionic-native';
+import { GooglePlus, Facebook } from 'ionic-native';
 import { AngularFire } from 'angularfire2';
 import 'rxjs/Rx';
 export var FireService = (function () {
@@ -11,6 +11,16 @@ export var FireService = (function () {
     FireService.prototype.getUser = function () {
         return this.user;
     };
+    FireService.prototype.loginWithFacebook = function () {
+        var _this = this;
+        console.log('loginWithFacebook');
+        Facebook.login(['user_friends', 'public_profile'])
+            .then(function (userFacebook) {
+            var provider = firebase.auth.FacebookAuthProvider.credential(userFacebook.authResponse.accessToken);
+            firebase.auth().signInWithCredential(provider);
+            _this.events.publish('user:created', userFacebook);
+        });
+    };
     FireService.prototype.loginWithGoogle = function () {
         var _this = this;
         GooglePlus.login({ 'webClientId': '157769908167-97grjmo237oa2s6p532fhm4vab2ano2q.apps.googleusercontent.com' })
@@ -19,25 +29,14 @@ export var FireService = (function () {
             firebase.auth().signInWithCredential(provider)
                 .then(function (data) {
                 _this.user = user;
-                console.log('user dentro do loginwithgoogle(fibase: ', user);
-                console.log('retorno signinwithcredential: ', data);
                 _this.events.publish('user:created', user);
             });
         });
     };
-    /* loginWithGoogle():Promise<any>{
-        console.log('loginWithGoogle');
-        return GooglePlus.login({'webClientId': '157769908167-97grjmo237oa2s6p532fhm4vab2ano2q.apps.googleusercontent.com'});
-    } */
-    /* loginWithGoogle():Observable<User>{
-        let observable: Observable<any>;
-        let promise: Promise<any>;
-
-        promise = GooglePlus.login({'webClientId': '157769908167-97grjmo237oa2s6p532fhm4vab2ano2q.apps.googleusercontent.com'});
-        observable = Observable.fromPromise(promise);
-        return observable;
-        
-    }*/
+    FireService.prototype.getUserInfo = function () {
+        var user = firebase.auth().currentUser;
+        return Promise.resolve(user);
+    };
     FireService.decorators = [
         { type: Injectable },
     ];

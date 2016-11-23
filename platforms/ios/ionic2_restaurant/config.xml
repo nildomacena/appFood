@@ -72,4 +72,14 @@
     <preference name="FadeSplashScreen" value="false" />
     <preference name="FadeSplashScreenDuration" value="0" />
     <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF" />
+    <feature name="FacebookConnectPlugin">
+        <param name="ios-package" value="FacebookConnectPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <plugin name="FacebookConnectPlugin" value="FacebookConnectPlugin" />
+    <access origin="https://m.facebook.com" />
+    <access origin="https://graph.facebook.com" />
+    <access origin="https://api.facebook.com" />
+    <access origin="https://*.fbcdn.net" />
+    <access origin="https://*.akamaihd.net" />
 </widget>

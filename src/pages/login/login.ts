@@ -33,4 +33,8 @@ export class LoginPage {
   loginWithGoogle(){
     this.fire.loginWithGoogle();
   }
+
+  loginWithFacebook(){
+    this.fire.loginWithFacebook();
+  }
 }

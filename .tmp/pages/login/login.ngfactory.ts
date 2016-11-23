@@ -199,7 +199,7 @@ class _View_LoginPage0 extends import1.AppView<import0.LoginPage> {
   /*private*/ _expr_0:any;
   /*private*/ _expr_3:any;
   /*private*/ _expr_17:any;
-  /*private*/ _expr_22:any;
+  /*private*/ _expr_23:any;
   constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import3.AppElement) {
     super(_View_LoginPage0,renderType_LoginPage,import6.ViewType.COMPONENT,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
   }
@@ -425,8 +425,9 @@ class _View_LoginPage0 extends import1.AppView<import0.LoginPage> {
     var disposable_0:Function = this.renderer.listen(this._el_42,'click',this.eventHandler(this._handle_click_42_0.bind(this)));
     var disposable_1:Function = this.renderer.listen(this._el_48,'click',this.eventHandler(this._handle_click_48_0.bind(this)));
     this._expr_17 = import7.UNINITIALIZED;
-    this._expr_22 = import7.UNINITIALIZED;
-    var disposable_2:Function = this.renderer.listen(this._el_62,'click',this.eventHandler(this._handle_click_62_0.bind(this)));
+    var disposable_2:Function = this.renderer.listen(this._el_53,'click',this.eventHandler(this._handle_click_53_0.bind(this)));
+    this._expr_23 = import7.UNINITIALIZED;
+    var disposable_3:Function = this.renderer.listen(this._el_62,'click',this.eventHandler(this._handle_click_62_0.bind(this)));
     this.init(([] as any[]),[
       this._text_0,
       this._el_1,
@@ -500,7 +501,8 @@ class _View_LoginPage0 extends import1.AppView<import0.LoginPage> {
     ,[
       disposable_0,
       disposable_1,
-      disposable_2
+      disposable_2,
+      disposable_3
     ]
     ,([] as any[]));
     return (null as any);
@@ -572,18 +574,18 @@ class _View_LoginPage0 extends import1.AppView<import0.LoginPage> {
     const currVal_16:any = 'logo-googleplus';
     this._Icon_50_3.check_md(currVal_16,throwOnChange,false);
     this._Icon_50_3.detectChangesInternal(this,this._el_50,throwOnChange);
-    const currVal_18:any = '';
-    this._Button_53_4.check_block(currVal_18,throwOnChange,false);
-    const currVal_19:any = 'fb-color';
-    this._Button_53_4.check_color(currVal_19,throwOnChange,false);
+    const currVal_19:any = '';
+    this._Button_53_4.check_block(currVal_19,throwOnChange,false);
+    const currVal_20:any = 'fb-color';
+    this._Button_53_4.check_color(currVal_20,throwOnChange,false);
     if (this._Button_53_4.detectChangesInternal(this,this._el_53,throwOnChange)) { this._appEl_53.componentView.markAsCheckOnce(); }
-    const currVal_20:any = 'logo-facebook';
-    this._Icon_55_3.check_ios(currVal_20,throwOnChange,false);
     const currVal_21:any = 'logo-facebook';
-    this._Icon_55_3.check_md(currVal_21,throwOnChange,false);
+    this._Icon_55_3.check_ios(currVal_21,throwOnChange,false);
+    const currVal_22:any = 'logo-facebook';
+    this._Icon_55_3.check_md(currVal_22,throwOnChange,false);
     this._Icon_55_3.detectChangesInternal(this,this._el_55,throwOnChange);
-    const currVal_24:any = 'light';
-    this._Typography_62_3.check_color(currVal_24,throwOnChange,false);
+    const currVal_25:any = 'light';
+    this._Typography_62_3.check_color(currVal_25,throwOnChange,false);
     this._Typography_62_3.detectChangesInternal(this,this._el_62,throwOnChange);
     this.detectContentChildrenChanges(throwOnChange);
     if (!throwOnChange) {
@@ -630,10 +632,10 @@ class _View_LoginPage0 extends import1.AppView<import0.LoginPage> {
       this.renderer.setElementClass(this._el_50,'hide',currVal_17);
       this._expr_17 = currVal_17;
     }
-    const currVal_22:any = this._Icon_55_3.context._hidden;
-    if (import4.checkBinding(throwOnChange,this._expr_22,currVal_22)) {
-      this.renderer.setElementClass(this._el_55,'hide',currVal_22);
-      this._expr_22 = currVal_22;
+    const currVal_23:any = this._Icon_55_3.context._hidden;
+    if (import4.checkBinding(throwOnChange,this._expr_23,currVal_23)) {
+      this.renderer.setElementClass(this._el_55,'hide',currVal_23);
+      this._expr_23 = currVal_23;
     }
     this.detectViewChildrenChanges(throwOnChange);
   }
@@ -653,6 +655,11 @@ class _View_LoginPage0 extends import1.AppView<import0.LoginPage> {
   private _handle_click_48_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
     const pd_0:any = ((<any>this.context.loginWithGoogle()) !== false);
+    return (true && pd_0);
+  }
+  private _handle_click_53_0($event:any):boolean {
+    this.markPathToRootAsCheckOnce();
+    const pd_0:any = ((<any>this.context.loginWithFacebook()) !== false);
     return (true && pd_0);
   }
   private _handle_click_62_0($event:any):boolean {

@@ -56,5 +56,16 @@
         "variables": {
             "REVERSED_CLIENT_ID": "com.googleusercontent.apps.157769908167-aiem2t3rat9jvs8ar9d92aip1rc6g5dp"
         }
+    },
+    "cordova-plugin-facebook4": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-facebook4"
+        },
+        "is_top_level": true,
+        "variables": {
+            "APP_ID": "654005841444317",
+            "APP_NAME": "appFood"
+        }
     }
 }
