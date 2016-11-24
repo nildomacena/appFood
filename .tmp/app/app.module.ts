@@ -1,5 +1,4 @@
 import { UserService } from './../services/user-service';
-import { User } from './../model/user';
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';

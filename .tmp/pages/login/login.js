@@ -4,12 +4,10 @@ import { Component } from '@angular/core';
 import { NavController, Events } from 'ionic-angular';
 import { RegisterPage } from "../register/register";
 import { HomePage } from "../home/home";
-import { FireService } from '../../services/fire-service';
 export var LoginPage = (function () {
-    function LoginPage(nav, fire, events, userService) {
+    function LoginPage(nav, events, userService) {
         var _this = this;
         this.nav = nav;
-        this.fire = fire;
         this.events = events;
         this.userService = userService;
         this.user = new User();
@@ -19,10 +17,6 @@ export var LoginPage = (function () {
         });
     }
     LoginPage.prototype.ionViewDidLoad = function () {
-        this.userService.isLoggedIn();
-    };
-    LoginPage.prototype.logged = function () {
-        this.userService.isLoggedIn();
     };
     // go to register page
     LoginPage.prototype.register = function () {
@@ -33,10 +27,10 @@ export var LoginPage = (function () {
         alert('Usuário ou senha inválidos');
     };
     LoginPage.prototype.loginWithGoogle = function () {
-        this.fire.loginWithGoogle();
+        this.userService.loginWithGoogle();
     };
     LoginPage.prototype.loginWithFacebook = function () {
-        this.fire.loginWithFacebook();
+        this.userService.loginWithFacebook();
     };
     LoginPage.decorators = [
         { type: Component, args: [{
@@ -47,7 +41,6 @@ export var LoginPage = (function () {
     /** @nocollapse */
     LoginPage.ctorParameters = [
         { type: NavController, },
-        { type: FireService, },
         { type: Events, },
         { type: UserService, },
     ];

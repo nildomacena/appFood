@@ -9,7 +9,7 @@ export class UserService {
     user: User = new User();
 
     constructor(public events: Events, public fire: FireService) {
-        console.log('UserService');
+        this.fire.isLoggedIn();
         this.events.subscribe('user:created', currentUser => {
             this.user.imageUrl = currentUser[0].photoURL;
             this.user.email = currentUser[0].email;
@@ -20,6 +20,14 @@ export class UserService {
 
     getUserData():User{
         return this.user;
+    }
+
+    loginWithGoogle(){
+        this.fire.loginWithGoogle()
+    }
+
+    loginWithFacebook(){
+        this.fire.loginWithFacebook();
     }
 
     isLoggedIn(){

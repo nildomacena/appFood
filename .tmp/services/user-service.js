@@ -8,7 +8,7 @@ export var UserService = (function () {
         this.events = events;
         this.fire = fire;
         this.user = new User();
-        console.log('UserService');
+        this.fire.isLoggedIn();
         this.events.subscribe('user:created', function (currentUser) {
             _this.user.imageUrl = currentUser[0].photoURL;
             _this.user.email = currentUser[0].email;
@@ -18,6 +18,12 @@ export var UserService = (function () {
     }
     UserService.prototype.getUserData = function () {
         return this.user;
+    };
+    UserService.prototype.loginWithGoogle = function () {
+        this.fire.loginWithGoogle();
+    };
+    UserService.prototype.loginWithFacebook = function () {
+        this.fire.loginWithFacebook();
     };
     UserService.prototype.isLoggedIn = function () {
         var _this = this;
