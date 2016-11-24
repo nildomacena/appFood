@@ -62,8 +62,8 @@ import * as import50 from '../services/item-service';
 import * as import51 from '../services/cart-service';
 import * as import52 from '../services/post-service';
 import * as import53 from '../services/chat-service';
-import * as import54 from '../services/user-service';
-import * as import55 from '../services/fire-service';
+import * as import54 from '../services/fire-service';
+import * as import55 from '../services/user-service';
 import * as import57 from '../node_modules/ionic-angular/components/action-sheet/action-sheet-component.ngfactory';
 import * as import58 from '../node_modules/ionic-angular/components/alert/alert-component.ngfactory';
 import * as import59 from '../node_modules/ionic-angular/components/app/app-root.ngfactory';
@@ -825,22 +825,22 @@ var AppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(AppModuleInjector.prototype, "_UserService_92", {
+    Object.defineProperty(AppModuleInjector.prototype, "_FireService_92", {
         get: function () {
-            if ((this.__UserService_92 == null)) {
-                (this.__UserService_92 = new import54.UserService(this._Events_68));
+            if ((this.__FireService_92 == null)) {
+                (this.__FireService_92 = new import54.FireService(this._Events_68, this._AngularFire_63));
             }
-            return this.__UserService_92;
+            return this.__FireService_92;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(AppModuleInjector.prototype, "_FireService_93", {
+    Object.defineProperty(AppModuleInjector.prototype, "_UserService_93", {
         get: function () {
-            if ((this.__FireService_93 == null)) {
-                (this.__FireService_93 = new import55.FireService(this._Events_68, this._AngularFire_63, this._UserService_92));
+            if ((this.__UserService_93 == null)) {
+                (this.__UserService_93 = new import55.UserService(this._Events_68, this._FireService_92));
             }
-            return this.__FireService_93;
+            return this.__UserService_93;
         },
         enumerable: true,
         configurable: true
@@ -1156,11 +1156,11 @@ var AppModuleInjector = (function (_super) {
         if ((token === import53.ChatService)) {
             return this._ChatService_91;
         }
-        if ((token === import54.UserService)) {
-            return this._UserService_92;
+        if ((token === import54.FireService)) {
+            return this._FireService_92;
         }
-        if ((token === import55.FireService)) {
-            return this._FireService_93;
+        if ((token === import55.UserService)) {
+            return this._UserService_93;
         }
         return notFoundResult;
     };

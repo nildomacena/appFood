@@ -14,7 +14,7 @@ import * as import6 from '@angular/core/src/linker/view_type';
 import * as import7 from '@angular/core/src/change_detection/change_detection';
 import * as import8 from 'ionic-angular/navigation/nav-controller';
 import * as import9 from 'ionic-angular/util/events';
-import * as import10 from '../../services/fire-service';
+import * as import10 from '../../services/user-service';
 import * as import11 from '@angular/core/src/metadata/view';
 import * as import12 from '@angular/core/src/linker/component_factory';
 import * as import13 from '../../node_modules/ionic-angular/components/toolbar/toolbar.ngfactory';
@@ -84,7 +84,7 @@ class _View_UserPage_Host0 extends import1.AppView<any> {
     this._el_0 = this.selectOrCreateHostElement('page-user',rootSelector,(null as any));
     this._appEl_0 = new import3.AppElement(0,(null as any),this,this._el_0);
     var compView_0:any = viewFactory_UserPage0(this.viewUtils,this.injector(0),this._appEl_0);
-    this._UserPage_0_4 = new Wrapper_UserPage(this.parentInjector.get(import8.NavController),this.parentInjector.get(import9.Events),this.parentInjector.get(import10.FireService));
+    this._UserPage_0_4 = new Wrapper_UserPage(this.parentInjector.get(import8.NavController),this.parentInjector.get(import9.Events),this.parentInjector.get(import10.UserService));
     this._appEl_0.initComponent(this._UserPage_0_4.context,([] as any[]),compView_0);
     compView_0.create(this._UserPage_0_4.context,this.projectableNodes,(null as any));
     this.init(([] as any[]).concat([this._el_0]),[this._el_0],([] as any[]),([] as any[]));

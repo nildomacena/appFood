@@ -1,19 +1,17 @@
-import { FireService } from './../../services/fire-service';
+import { UserService } from './../../services/user-service';
 import { User } from './../../model/user';
 import { Component } from '@angular/core';
 import { NavController, Events } from 'ionic-angular';
 export var UserPage = (function () {
-    function UserPage(nav, events, fire) {
+    function UserPage(nav, events, userService) {
         this.nav = nav;
         this.events = events;
-        this.fire = fire;
+        this.userService = userService;
         this.user = new User();
-        var userData = this.fire.getUser();
-        console.log(userData);
+        var userData = this.userService.getUserData();
         this.user.displayName = userData.displayName;
         this.user.imageUrl = userData.imageUrl;
         this.user.email = userData.email;
-        console.log('this.user: ', this.user);
     }
     UserPage.decorators = [
         { type: Component, args: [{
@@ -25,7 +23,7 @@ export var UserPage = (function () {
     UserPage.ctorParameters = [
         { type: NavController, },
         { type: Events, },
-        { type: FireService, },
+        { type: UserService, },
     ];
     return UserPage;
 }());

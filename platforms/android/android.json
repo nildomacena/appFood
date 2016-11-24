@@ -92,7 +92,8 @@
                             "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|screenLayout|screenSize|orientation\" android:label=\"@string/fb_app_name\" android:name=\"com.facebook.FacebookActivity\" android:theme=\"@android:style/Theme.Translucent.NoTitleBar\" />",
                             "count": 1
                         }
-                    ]
+                    ],
+                    "/*": []
                 }
             },
             "res/values/facebookconnect.xml": {

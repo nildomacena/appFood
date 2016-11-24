@@ -1,4 +1,3 @@
-import { UserService } from './user-service';
 import { Injectable } from "@angular/core";
 import { Events } from 'ionic-angular';
 import { GooglePlus, Facebook } from 'ionic-native';
@@ -9,14 +8,30 @@ import { AngularFire } from 'angularfire2';
 
 export class FireService {
     user: any;
-    constructor(public events: Events, public af: AngularFire, public userService: UserService){ }
+    constructor(public events: Events, public af: AngularFire){
+        firebase.auth().onAuthStateChanged(user =>{
+            if (user){
+                console.log('User logged (onAuthStateChanged)');
+                this.events.publish('user:created', firebase.auth().currentUser)
+            }
+            else    
+                console.log('User not logged (onAuthStateChanged)');
+        })
+    }
 
     getUser():any{
         return this.user;
     }
 
+    isLoggedIn(){
+        if (firebase.auth().currentUser)
+            this.events.publish('user:created', firebase.auth().currentUser)
+
+    }
+
     loginWithFacebook(){
         console.log('loginWithFacebook');
+        console.log('currentUser: ', firebase.auth().currentUser);
         Facebook.login(['user_friends', 'public_profile', 'email'])
             .then(userFacebook => {
                 let provider = firebase.auth.FacebookAuthProvider.credential(userFacebook.authResponse.accessToken);
@@ -33,14 +48,15 @@ export class FireService {
     }
 
     loginWithGoogle(){
-
+        console.log('loginWithGoogle');
+        console.log('currentUser: ', firebase.auth().currentUser)
         GooglePlus.login({'webClientId': '157769908167-97grjmo237oa2s6p532fhm4vab2ano2q.apps.googleusercontent.com'})
         .then(user => {
             let provider = firebase.auth.GoogleAuthProvider.credential(user.idToken);
             firebase.auth().signInWithCredential(provider)
                 .then(data => {
                     this.user = user;
-                    this.events.publish('user:created',user);
+                    this.events.publish('user:created',firebase.auth().currentUser);
                 })
         })   
     }

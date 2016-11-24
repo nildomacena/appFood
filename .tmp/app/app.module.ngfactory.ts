@@ -58,8 +58,8 @@ import * as import50 from '../services/item-service';
 import * as import51 from '../services/cart-service';
 import * as import52 from '../services/post-service';
 import * as import53 from '../services/chat-service';
-import * as import54 from '../services/user-service';
-import * as import55 from '../services/fire-service';
+import * as import54 from '../services/fire-service';
+import * as import55 from '../services/user-service';
 import * as import56 from '@angular/core/src/di/injector';
 import * as import57 from '../node_modules/ionic-angular/components/action-sheet/action-sheet-component.ngfactory';
 import * as import58 from '../node_modules/ionic-angular/components/alert/alert-component.ngfactory';
@@ -211,8 +211,8 @@ class AppModuleInjector extends import0.NgModuleInjector<import1.AppModule> {
   __CartService_89:import51.CartService;
   __PostService_90:import52.PostService;
   __ChatService_91:import53.ChatService;
-  __UserService_92:import54.UserService;
-  __FireService_93:import55.FireService;
+  __FireService_92:import54.FireService;
+  __UserService_93:import55.UserService;
   constructor(parent:import56.Injector) {
     super(parent,[
       import57.ActionSheetCmpNgFactory,
@@ -522,13 +522,13 @@ class AppModuleInjector extends import0.NgModuleInjector<import1.AppModule> {
     if ((this.__ChatService_91 == (null as any))) { (this.__ChatService_91 = new import53.ChatService()); }
     return this.__ChatService_91;
   }
-  get _UserService_92():import54.UserService {
-    if ((this.__UserService_92 == (null as any))) { (this.__UserService_92 = new import54.UserService(this._Events_68)); }
-    return this.__UserService_92;
+  get _FireService_92():import54.FireService {
+    if ((this.__FireService_92 == (null as any))) { (this.__FireService_92 = new import54.FireService(this._Events_68,this._AngularFire_63)); }
+    return this.__FireService_92;
   }
-  get _FireService_93():import55.FireService {
-    if ((this.__FireService_93 == (null as any))) { (this.__FireService_93 = new import55.FireService(this._Events_68,this._AngularFire_63,this._UserService_92)); }
-    return this.__FireService_93;
+  get _UserService_93():import55.UserService {
+    if ((this.__UserService_93 == (null as any))) { (this.__UserService_93 = new import55.UserService(this._Events_68,this._FireService_92)); }
+    return this.__UserService_93;
   }
   createInternal():import1.AppModule {
     this._CommonModule_0 = new import2.CommonModule();
@@ -658,8 +658,8 @@ class AppModuleInjector extends import0.NgModuleInjector<import1.AppModule> {
     if ((token === import51.CartService)) { return this._CartService_89; }
     if ((token === import52.PostService)) { return this._PostService_90; }
     if ((token === import53.ChatService)) { return this._ChatService_91; }
-    if ((token === import54.UserService)) { return this._UserService_92; }
-    if ((token === import55.FireService)) { return this._FireService_93; }
+    if ((token === import54.FireService)) { return this._FireService_92; }
+    if ((token === import55.UserService)) { return this._UserService_93; }
     return notFoundResult;
   }
   destroyInternal():void {
