@@ -127,6 +127,17 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
+  logout(){
+    this.fire.logout()
+      .then(data => { 
+        this.nav.setRoot(LoginPage);
+      })
+      .catch(error => {
+        console.log('error logout: ',error);
+      })
+
+  }
+
   // view my profile
   viewMyProfile() {
     this.nav.setRoot(UserPage);

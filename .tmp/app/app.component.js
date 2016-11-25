@@ -102,6 +102,16 @@ export var MyApp = (function () {
         // we wouldn't want the back button to show in this scenario
         this.nav.setRoot(page.component);
     };
+    MyApp.prototype.logout = function () {
+        var _this = this;
+        this.fire.logout()
+            .then(function (data) {
+            _this.nav.setRoot(LoginPage);
+        })
+            .catch(function (error) {
+            console.log('error logout: ', error);
+        });
+    };
     // view my profile
     MyApp.prototype.viewMyProfile = function () {
         this.nav.setRoot(UserPage);
