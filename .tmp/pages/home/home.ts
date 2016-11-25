@@ -28,7 +28,6 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-    this.fire.getUserInfo().then(user => console.log('getUserInfo: ',user));
   }
   // view a category
   viewCategory(categoryId) {

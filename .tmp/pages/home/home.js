@@ -20,7 +20,6 @@ export var HomePage = (function () {
         this.user = this.params.get('user');
     }
     HomePage.prototype.ionViewDidLoad = function () {
-        this.fire.getUserInfo().then(function (user) { return console.log('getUserInfo: ', user); });
     };
     // view a category
     HomePage.prototype.viewCategory = function (categoryId) {
