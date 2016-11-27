@@ -9,6 +9,7 @@ export class UserService {
 
     constructor(public events: Events, public fire: FireService) {
         console.log('UserService');
+        this.fire.isLoggedIn();
         this.events.subscribe('user:created', currentUser => {
             this.user.imageUrl = currentUser[0].photoURL;
             this.user.email = currentUser[0].email;
@@ -19,16 +20,5 @@ export class UserService {
 
     getUserData():User{
         return this.user;
-    }
-
-    isLoggedIn(){
-        this.fire.isLoggedIn();
-        this.events.subscribe('user:created', currentUser => {
-            console.log('isLoggedin. Usuário criado');
-            this.user.imageUrl = currentUser[0].photoURL;
-            this.user.email = currentUser[0].email;
-            this.user.displayName = currentUser[0].displayName;
-            this.events.publish('user:registered', this.user);
-        })
     }
 }

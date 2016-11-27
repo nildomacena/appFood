@@ -30,14 +30,14 @@ export class FireService {
     }
 
     loginWithFacebook(){
-        
         Facebook.login(['user_friends', 'public_profile', 'email'])
             .then(userFacebook => {
                 console.log('userFacebook: ',userFacebook);
                 let credential = firebase.auth.FacebookAuthProvider.credential(userFacebook.authResponse.accessToken);
                 firebase.auth().signInWithCredential(credential)
                     .then(data => {
-                        console.log('signInWithProvider result: ', data)
+                        console.log('signInWithProvider result: ', data);
+                        this.events.publish('user:created',firebase.auth().currentUser);
                     })
                     .catch(error => {
                         console.log('error: ',error);

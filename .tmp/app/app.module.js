@@ -1,3 +1,12 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 import { UserService } from './../services/user-service';
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
@@ -38,67 +47,66 @@ var config = {
 export var AppModule = (function () {
     function AppModule() {
     }
-    AppModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [
-                        MyApp,
-                        AboutPage,
-                        AddressPage,
-                        CartPage,
-                        CategoriesPage,
-                        CategoryPage,
-                        ChatDetailPage,
-                        ChatsPage,
-                        CheckoutPage,
-                        FavoritePage,
-                        HomePage,
-                        ItemPage,
-                        LoginPage,
-                        NewsPage,
-                        OfferPage,
-                        RegisterPage,
-                        SettingPage,
-                        UserPage
-                    ],
-                    imports: [
-                        IonicModule.forRoot(MyApp),
-                        AngularFireModule.initializeApp(config)
-                    ],
-                    bootstrap: [IonicApp],
-                    entryComponents: [
-                        MyApp,
-                        AboutPage,
-                        AddressPage,
-                        CartPage,
-                        CategoriesPage,
-                        CategoryPage,
-                        ChatDetailPage,
-                        ChatsPage,
-                        CheckoutPage,
-                        FavoritePage,
-                        HomePage,
-                        ItemPage,
-                        LoginPage,
-                        NewsPage,
-                        OfferPage,
-                        RegisterPage,
-                        SettingPage,
-                        UserPage
-                    ],
-                    providers: [
-                        MenuService,
-                        CategoryService,
-                        ItemService,
-                        CartService,
-                        PostService,
-                        ChatService,
-                        FireService,
-                        UserService
-                    ]
-                },] },
-    ];
-    /** @nocollapse */
-    AppModule.ctorParameters = [];
+    AppModule = __decorate([
+        NgModule({
+            declarations: [
+                MyApp,
+                AboutPage,
+                AddressPage,
+                CartPage,
+                CategoriesPage,
+                CategoryPage,
+                ChatDetailPage,
+                ChatsPage,
+                CheckoutPage,
+                FavoritePage,
+                HomePage,
+                ItemPage,
+                LoginPage,
+                NewsPage,
+                OfferPage,
+                RegisterPage,
+                SettingPage,
+                UserPage
+            ],
+            imports: [
+                IonicModule.forRoot(MyApp),
+                AngularFireModule.initializeApp(config)
+            ],
+            bootstrap: [IonicApp],
+            entryComponents: [
+                MyApp,
+                AboutPage,
+                AddressPage,
+                CartPage,
+                CategoriesPage,
+                CategoryPage,
+                ChatDetailPage,
+                ChatsPage,
+                CheckoutPage,
+                FavoritePage,
+                HomePage,
+                ItemPage,
+                LoginPage,
+                NewsPage,
+                OfferPage,
+                RegisterPage,
+                SettingPage,
+                UserPage
+            ],
+            providers: [
+                MenuService,
+                CategoryService,
+                ItemService,
+                CartService,
+                PostService,
+                ChatService,
+                FireService,
+                UserService
+            ]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AppModule);
     return AppModule;
 }());
 //# sourceMappingURL=app.module.js.map
