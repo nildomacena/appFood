@@ -1,12 +1,3 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 import { User } from './../model/user';
 import { FireService } from './../services/fire-service';
 import { Component } from '@angular/core';
@@ -125,14 +116,20 @@ export var MyApp = (function () {
     MyApp.prototype.viewMyProfile = function () {
         this.nav.setRoot(UserPage);
     };
-    MyApp = __decorate([
-        Component({template:/*ion-inline-start:"/Users/jackson/Projetos/Ionic 2/MyMenu/src/app/app.html"*/'<ion-menu [content]="content">\n\n  <ion-content class="menu-left">\n    <!-- User profile -->\n    <div text-center padding-top padding-bottom class="primary-bg menu-left">\n      <a menuClose (click)="viewMyProfile()">\n        <img class="profile-picture" [src]="user.imageUrl ">\n        <h4 color="light" >{{user.displayName}}</h4>\n      </a>\n    </div>\n\n    <ion-list class="list-full-border">\n      <button ion-item menuClose *ngFor="let page of pages" (click)="openPage(page)">\n        <ion-icon item-left name="{{ page.icon }}"></ion-icon>\n        {{ page.title }}\n        <ion-badge danger item-right *ngIf="page.count">{{ page.count }}</ion-badge>\n      </button>\n      \n      <button ion-item menuClose (click)="logout()" >\n        <ion-icon item-left name="ios-exit-outline"></ion-icon>\n        Logout\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/Users/jackson/Projetos/Ionic 2/MyMenu/src/app/app.html"*/,
-            queries: {
-                nav: new ViewChild('content')
-            }
-        }), 
-        __metadata('design:paramtypes', [Platform, FireService, Events])
-    ], MyApp);
+    MyApp.decorators = [
+        { type: Component, args: [{
+                    templateUrl: 'app.html',
+                    queries: {
+                        nav: new ViewChild('content')
+                    }
+                },] },
+    ];
+    /** @nocollapse */
+    MyApp.ctorParameters = [
+        { type: Platform, },
+        { type: FireService, },
+        { type: Events, },
+    ];
     return MyApp;
 }());
 //# sourceMappingURL=app.component.js.map
