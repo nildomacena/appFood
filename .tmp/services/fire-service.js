@@ -45,21 +45,32 @@ export var FireService = (function () {
                     firebase.auth().fetchProvidersForEmail(email)
                         .then(function (providers) {
                         _this.fetchGoogleAndFacebook(providers[0])
-                            .then(function (user) {
-                            var provider = firebase.auth.GoogleAuthProvider.credential(user.idToken);
-                            firebase.auth().signInWithCredential(provider)
+                            .then(function (credentialReturned) {
+                            console.log('credentialReturned: ', credentialReturned);
+                            firebase.auth().signInWithCredential(credentialReturned)
                                 .then(function (userLogged) {
-                                console.log('pending cred');
                                 userLogged.link(pendingCred);
                                 _this.events.publish('user:created', firebase.auth().currentUser);
                             })
                                 .catch(function (error) {
-                                console.log('erro após o signInWithCredential: ', error);
+                                console.log('Erro após link: ', error);
                             });
-                        })
-                            .catch(function (error) {
-                            console.log('erro após o fetchGoogleAndFacebook: ', error);
                         });
+                        /* .then(user => {
+                             let provider = firebase.auth.GoogleAuthProvider.credential(user.idToken);
+                             firebase.auth().signInWithCredential(provider)
+                                 .then(userLogged => {
+                                     console.log('pending cred');
+                                     userLogged.link(pendingCred);
+                                     this.events.publish('user:created',firebase.auth().currentUser);
+                                 })
+                                 .catch(error => {
+                                     console.log('erro após o signInWithCredential: ', error);
+                                 })
+                         })
+                         .catch(error => {
+                             console.log('erro após o fetchGoogleAndFacebook: ', error);
+                         });*/
                     });
                 }
             });
@@ -70,52 +81,42 @@ export var FireService = (function () {
         GooglePlus.login({ 'webClientId': '157769908167-97grjmo237oa2s6p532fhm4vab2ano2q.apps.googleusercontent.com' })
             .then(function (user) {
             var credential = firebase.auth.GoogleAuthProvider.credential(user.idToken);
-            console.log('User depois GooglePlus.login: ', user);
-            firebase.auth().fetchProvidersForEmail(user.email)
-                .then(function (providers) {
-                if (providers[0] === 'facebook.com') {
-                    console.log('Tem providers para esse email');
-                    _this.fetchGoogleAndFacebook(providers[0])
-                        .then(function (user) {
-                        console.log('user fetchGoogleAndFacebook: ', user);
-                        var provider = firebase.auth.FacebookAuthProvider.credential(user.authResponse.accessToken);
-                        firebase.auth().signInWithCredential(provider)
-                            .then(function (userLogged) {
-                            console.log('pending cred');
-                            userLogged.link(credential);
-                            _this.events.publish('user:created', firebase.auth().currentUser);
-                        })
-                            .catch(function (error) {
-                            console.log('erro após o signInWithCredential: ', error);
-                        });
-                    })
-                        .catch(function (error) {
-                        console.log('erro após o fetchGoogleAndFacebook: ', error);
-                    });
-                }
-                else {
-                    console.log('Não tem providers para esse email');
-                    firebase.auth().signInWithCredential(credential)
-                        .then(function (data) {
-                        _this.events.publish('user:created', firebase.auth().currentUser);
-                        return Promise.resolve(user);
-                    })
-                        .catch(function (error) {
-                        console.log(error);
-                    });
-                }
+            firebase.auth().signInWithCredential(credential)
+                .then(function (data) {
+                _this.events.publish('user:created', firebase.auth().currentUser);
+            })
+                .catch(function (error) {
+                console.log(error);
             });
         });
     };
     FireService.prototype.fetchGoogleAndFacebook = function (provider) {
-        if (provider === 'google.com')
-            return GooglePlus.login({ 'webClientId': '157769908167-97grjmo237oa2s6p532fhm4vab2ano2q.apps.googleusercontent.com' });
-        if (provider === 'facebook.com')
-            return Facebook.login(['user_friends', 'public_profile', 'email']);
+        if (provider === 'google.com') {
+            var promise = new Promise(function (resolve, reject) {
+                GooglePlus.login({ 'webClientId': '157769908167-97grjmo237oa2s6p532fhm4vab2ano2q.apps.googleusercontent.com' })
+                    .then(function (user) {
+                    var credential = firebase.auth.GoogleAuthProvider.credential(user.idToken);
+                    console.log('credential let promise: ', credential);
+                    resolve(credential);
+                });
+            });
+            return promise;
+        }
+        if (provider === 'facebook.com') {
+            Facebook.login(['user_friends', 'public_profile', 'email'])
+                .then(function (userFacebook) {
+                var credential = firebase.auth.FacebookAuthProvider.credential(userFacebook.authResponse.accessToken);
+                console.log('credential no fetch: ', credential);
+                return Promise.resolve(credential);
+            });
+        }
     };
     FireService.prototype.getUserInfo = function () {
         var user = firebase.auth().currentUser;
         return Promise.resolve(user);
+    };
+    FireService.prototype.createUserWithEmailAndPassword = function (email, password) {
+        return this.af.auth.createUser({ email: email, password: password });
     };
     FireService.prototype.logout = function () {
         return firebase.auth().signOut();

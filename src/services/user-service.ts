@@ -21,4 +21,8 @@ export class UserService {
     getUserData():User{
         return this.user;
     }
+
+    createUser(email:string, password:string):firebase.Promise<any> {
+        return this.fire.createUserWithEmailAndPassword(email,password)
+    }
 }

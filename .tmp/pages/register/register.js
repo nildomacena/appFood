@@ -1,20 +1,25 @@
+import { UserService } from './../../services/user-service';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HomePage } from "../home/home";
 import { LoginPage } from "../login/login";
-/*
- Generated class for the LoginPage page.
-
- See http://ionicframework.com/docs/v2/components/#navigation for more info on
- Ionic pages and navigation.
- */
 export var RegisterPage = (function () {
-    function RegisterPage(nav) {
+    function RegisterPage(nav, userService) {
         this.nav = nav;
+        this.userService = userService;
     }
     // register and go to home page
-    RegisterPage.prototype.register = function () {
-        this.nav.setRoot(HomePage);
+    RegisterPage.prototype.register = function (email, password) {
+        var _this = this;
+        console.log('email: ', email, '\npassword: ', password);
+        this.userService.createUser(email, password)
+            .then(function (data) {
+            console.log('Resultado createUser: ', data);
+            _this.nav.setRoot(HomePage);
+        })
+            .catch(function (error) {
+            console.log('error create user: ', error);
+        });
     };
     // go to login page
     RegisterPage.prototype.login = function () {
@@ -29,6 +34,7 @@ export var RegisterPage = (function () {
     /** @nocollapse */
     RegisterPage.ctorParameters = [
         { type: NavController, },
+        { type: UserService, },
     ];
     return RegisterPage;
 }());
