@@ -10,11 +10,18 @@ export class UserService {
     constructor(public events: Events, public fire: FireService) {
         console.log('UserService');
         this.fire.isLoggedIn();
-        this.events.subscribe('user:created', currentUser => {
-            this.user.imageUrl = currentUser[0].photoURL;
-            this.user.email = currentUser[0].email;
-            this.user.displayName = currentUser[0].displayName;
-            this.events.publish('user:registered', this.user);
+        this.events.subscribe('user:created', () => {
+            this.fire.getUserInfo()
+                .then(snapshot => {
+                    let userLogged = snapshot.val();
+                    console.log('snapshot.val(): ',snapshot.val());
+                    if(userLogged){
+                        this.user.displayName = userLogged.name;
+                        this.user.email = userLogged.email;
+                        this.user.imageUrl = userLogged.photo;
+                        this.events.publish('user:registered', this.user);
+                    }
+                })
         })
     }
 

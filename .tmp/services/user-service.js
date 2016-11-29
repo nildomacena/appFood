@@ -10,11 +10,18 @@ export var UserService = (function () {
         this.user = new User();
         console.log('UserService');
         this.fire.isLoggedIn();
-        this.events.subscribe('user:created', function (currentUser) {
-            _this.user.imageUrl = currentUser[0].photoURL;
-            _this.user.email = currentUser[0].email;
-            _this.user.displayName = currentUser[0].displayName;
-            _this.events.publish('user:registered', _this.user);
+        this.events.subscribe('user:created', function () {
+            _this.fire.getUserInfo()
+                .then(function (snapshot) {
+                var userLogged = snapshot.val();
+                console.log('snapshot.val(): ', snapshot.val());
+                if (userLogged) {
+                    _this.user.displayName = userLogged.name;
+                    _this.user.email = userLogged.email;
+                    _this.user.imageUrl = userLogged.photo;
+                    _this.events.publish('user:registered', _this.user);
+                }
+            });
         });
     }
     UserService.prototype.getUserData = function () {

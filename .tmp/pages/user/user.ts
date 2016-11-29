@@ -1,7 +1,6 @@
 import { UserService } from './../../services/user-service';
-import { FireService } from './../../services/fire-service';
 import { User } from './../../model/user';
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, Events } from 'ionic-angular';
 
 

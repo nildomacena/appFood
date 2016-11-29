@@ -12,15 +12,11 @@ export class FireService {
         firebase.auth().onAuthStateChanged(user =>{
             if (user){
                 console.log('User logged (onAuthStateChanged)');
-                this.events.publish('user:created', firebase.auth().currentUser)
+                this.events.publish('user:created')
             }
             else    
                 console.log('User not logged (onAuthStateChanged)');
         });
-
-        firebase.database().ref('users').on('value', snapshot => {
-            console.log('snapshot: ', snapshot.val());
-        })
     }
 
     getUser():any{
@@ -29,7 +25,7 @@ export class FireService {
 
     isLoggedIn(){
         if (firebase.auth().currentUser)
-            this.events.publish('user:created', firebase.auth().currentUser)
+            this.events.publish('user:created')
 
     }
 
@@ -39,8 +35,11 @@ export class FireService {
                 let credential = firebase.auth.FacebookAuthProvider.credential(userFacebook.authResponse.accessToken);
                 firebase.auth().signInWithCredential(credential)
                     .then(data => {
-                        this.saveUserInfo();
-                        this.events.publish('user:created',firebase.auth().currentUser);
+                        this.saveUserInfo()
+                            .then(retorno => {
+                                if(retorno)
+                                    this.events.publish('user:created');
+                            })
                     })
                     .catch(error => {
                         let pendingCred = error['credential'];
@@ -54,7 +53,7 @@ export class FireService {
                                                 .then(userLogged => {
                                                     userLogged.link(pendingCred);
                                                     this.saveUserInfo();
-                                                    this.events.publish('user:created',firebase.auth().currentUser);
+                                                    this.events.publish('user:created');
                                                 })
                                                 .catch(error => {
                                                     console.log('Erro após link: ',error);
@@ -74,8 +73,12 @@ export class FireService {
                 let credential = firebase.auth.GoogleAuthProvider.credential(user.idToken);
                 firebase.auth().signInWithCredential(credential)
                     .then(data => {
-                        this.saveUserInfo();
-                        this.events.publish('user:created',firebase.auth().currentUser);
+                        this.saveUserInfo()
+                            .then(retorno => {
+                                console.log('dataSaveUserInfo(): ', retorno);
+                                this.events.publish('user:created');
+
+                            })
                     })
                     .catch(error => {
                         console.log(error);
@@ -107,25 +110,35 @@ export class FireService {
         }
     }
 
-    getUserInfo():Promise<any>{
-        let user = firebase.auth().currentUser;
-        return Promise.resolve(user);
-    }
-
-    saveUserInfo(){
+    getUserInfo():firebase.Promise<any>{
         let currentUser = firebase.auth().currentUser; 
         let uid = currentUser.uid;
+        return firebase.database().ref('users/'+uid).once('value')
+    }
 
-        firebase.database().ref('users/'+uid).once('value')
-            .then(snapshot => {
-                console.log()
-                if(!snapshot.val())
-                    firebase.database().ref('users/'+uid).set({
-                        uid: uid,
-                        name: currentUser.displayName,
-                        photo: currentUser.photoURL
-                    })
-            })
+    saveUserInfo():Promise<any> {
+        let currentUser = firebase.auth().currentUser; 
+        let uid = currentUser.uid;
+        let promise: Promise<any>; 
+        promise = new Promise((resolve, reject)=>{
+            firebase.database().ref('users/'+uid).once('value')
+                .then(snapshot => {
+                    console.log('saveUserInfo snapshot: ',snapshot.val())
+                    if(!snapshot.val()){
+                        console.log('Não tem usuário cadastrado');
+                        firebase.database().ref('users/'+uid).set({
+                            uid: uid,
+                            name: currentUser.displayName,
+                            photo: currentUser.photoURL,
+                            email: currentUser.email 
+                        })
+                        .then(data => {
+                            resolve(true);
+                        })
+                    }
+                })
+        })
+        return promise;
     }
     createUserWithEmailAndPassword(email:string, password: string, name: string): Promise<any> {
         console.log('name create user: ',name)

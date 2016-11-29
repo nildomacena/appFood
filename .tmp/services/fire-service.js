@@ -11,13 +11,10 @@ export var FireService = (function () {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 console.log('User logged (onAuthStateChanged)');
-                _this.events.publish('user:created', firebase.auth().currentUser);
+                _this.events.publish('user:created');
             }
             else
                 console.log('User not logged (onAuthStateChanged)');
-        });
-        firebase.database().ref('users').on('value', function (snapshot) {
-            console.log('snapshot: ', snapshot.val());
         });
     }
     FireService.prototype.getUser = function () {
@@ -25,7 +22,7 @@ export var FireService = (function () {
     };
     FireService.prototype.isLoggedIn = function () {
         if (firebase.auth().currentUser)
-            this.events.publish('user:created', firebase.auth().currentUser);
+            this.events.publish('user:created');
     };
     FireService.prototype.loginWithFacebook = function () {
         var _this = this;
@@ -34,8 +31,11 @@ export var FireService = (function () {
             var credential = firebase.auth.FacebookAuthProvider.credential(userFacebook.authResponse.accessToken);
             firebase.auth().signInWithCredential(credential)
                 .then(function (data) {
-                _this.saveUserInfo();
-                _this.events.publish('user:created', firebase.auth().currentUser);
+                _this.saveUserInfo()
+                    .then(function (retorno) {
+                    if (retorno)
+                        _this.events.publish('user:created');
+                });
             })
                 .catch(function (error) {
                 var pendingCred = error['credential'];
@@ -49,7 +49,7 @@ export var FireService = (function () {
                                 .then(function (userLogged) {
                                 userLogged.link(pendingCred);
                                 _this.saveUserInfo();
-                                _this.events.publish('user:created', firebase.auth().currentUser);
+                                _this.events.publish('user:created');
                             })
                                 .catch(function (error) {
                                 console.log('Erro após link: ', error);
@@ -67,8 +67,11 @@ export var FireService = (function () {
             var credential = firebase.auth.GoogleAuthProvider.credential(user.idToken);
             firebase.auth().signInWithCredential(credential)
                 .then(function (data) {
-                _this.saveUserInfo();
-                _this.events.publish('user:created', firebase.auth().currentUser);
+                _this.saveUserInfo()
+                    .then(function (retorno) {
+                    console.log('dataSaveUserInfo(): ', retorno);
+                    _this.events.publish('user:created');
+                });
             })
                 .catch(function (error) {
                 console.log(error);
@@ -97,22 +100,33 @@ export var FireService = (function () {
         }
     };
     FireService.prototype.getUserInfo = function () {
-        var user = firebase.auth().currentUser;
-        return Promise.resolve(user);
+        var currentUser = firebase.auth().currentUser;
+        var uid = currentUser.uid;
+        return firebase.database().ref('users/' + uid).once('value');
     };
     FireService.prototype.saveUserInfo = function () {
         var currentUser = firebase.auth().currentUser;
         var uid = currentUser.uid;
-        firebase.database().ref('users/' + uid).once('value')
-            .then(function (snapshot) {
-            console.log();
-            if (!snapshot.val())
-                firebase.database().ref('users/' + uid).set({
-                    uid: uid,
-                    name: currentUser.displayName,
-                    photo: currentUser.photoURL
-                });
+        var promise;
+        promise = new Promise(function (resolve, reject) {
+            firebase.database().ref('users/' + uid).once('value')
+                .then(function (snapshot) {
+                console.log('saveUserInfo snapshot: ', snapshot.val());
+                if (!snapshot.val()) {
+                    console.log('Não tem usuário cadastrado');
+                    firebase.database().ref('users/' + uid).set({
+                        uid: uid,
+                        name: currentUser.displayName,
+                        photo: currentUser.photoURL,
+                        email: currentUser.email
+                    })
+                        .then(function (data) {
+                        resolve(true);
+                    });
+                }
+            });
         });
+        return promise;
     };
     FireService.prototype.createUserWithEmailAndPassword = function (email, password, name) {
         var _this = this;
