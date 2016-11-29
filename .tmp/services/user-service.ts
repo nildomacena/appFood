@@ -22,7 +22,7 @@ export class UserService {
         return this.user;
     }
 
-    createUser(email:string, password:string):firebase.Promise<any> {
-        return this.fire.createUserWithEmailAndPassword(email,password)
+    createUser(email:string, password:string, name: string): Promise<any> {
+        return this.fire.createUserWithEmailAndPassword(email, password, name)
     }
 }

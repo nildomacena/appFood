@@ -16,6 +16,10 @@ export class FireService {
             }
             else    
                 console.log('User not logged (onAuthStateChanged)');
+        });
+
+        firebase.database().ref('users').on('value', snapshot => {
+            console.log('snapshot: ', snapshot.val());
         })
     }
 
@@ -32,50 +36,30 @@ export class FireService {
     loginWithFacebook(){
         Facebook.login(['user_friends', 'public_profile', 'email'])
             .then(userFacebook => {
-                console.log('userFacebook: ',userFacebook);
                 let credential = firebase.auth.FacebookAuthProvider.credential(userFacebook.authResponse.accessToken);
                 firebase.auth().signInWithCredential(credential)
                     .then(data => {
-                        console.log('signInWithProvider result: ', data);
+                        this.saveUserInfo();
                         this.events.publish('user:created',firebase.auth().currentUser);
                     })
                     .catch(error => {
-                        console.log('error: ',error);
                         let pendingCred = error['credential'];
                         let email = error['email'];
-                        console.log('Email do erro: ', email);
-                        console.log('Credencial do erro: ',pendingCred);
                         if(error['code'] === 'auth/account-exists-with-different-credential'){
                             firebase.auth().fetchProvidersForEmail(email)
                                 .then(providers => {
-                                    this.fetchGoogleAndFacebook(providers[0])
+                                    this.fetchProviders(providers[0])
                                         .then(credentialReturned => {
-                                            console.log('credentialReturned: ',credentialReturned)
                                             firebase.auth().signInWithCredential(credentialReturned)
                                                 .then(userLogged => {
                                                     userLogged.link(pendingCred);
+                                                    this.saveUserInfo();
                                                     this.events.publish('user:created',firebase.auth().currentUser);
                                                 })
                                                 .catch(error => {
                                                     console.log('Erro após link: ',error);
                                                 });
-                                        })
-                                       
-                                       /* .then(user => {
-                                            let provider = firebase.auth.GoogleAuthProvider.credential(user.idToken);
-                                            firebase.auth().signInWithCredential(provider)
-                                                .then(userLogged => {
-                                                    console.log('pending cred');
-                                                    userLogged.link(pendingCred);
-                                                    this.events.publish('user:created',firebase.auth().currentUser);
-                                                })
-                                                .catch(error => {
-                                                    console.log('erro após o signInWithCredential: ', error);
-                                                })
-                                        })
-                                        .catch(error => {
-                                            console.log('erro após o fetchGoogleAndFacebook: ', error);
-                                        });*/
+                                        });
                                 })
                         }
 
@@ -90,6 +74,7 @@ export class FireService {
                 let credential = firebase.auth.GoogleAuthProvider.credential(user.idToken);
                 firebase.auth().signInWithCredential(credential)
                     .then(data => {
+                        this.saveUserInfo();
                         this.events.publish('user:created',firebase.auth().currentUser);
                     })
                     .catch(error => {
@@ -98,7 +83,7 @@ export class FireService {
             });
     }
 
-    fetchGoogleAndFacebook(provider): Promise<any> {
+    fetchProviders(provider): Promise<any> {
         
         if(provider === 'google.com'){
             let promise = new Promise((resolve, reject) => {
@@ -127,10 +112,38 @@ export class FireService {
         return Promise.resolve(user);
     }
 
+    saveUserInfo(){
+        let currentUser = firebase.auth().currentUser; 
+        let uid = currentUser.uid;
 
-    createUserWithEmailAndPassword(email:string, password: string): firebase.Promise<any> {
-        
-       return this.af.auth.createUser({email: email, password: password})
+        firebase.database().ref('users/'+uid).once('value')
+            .then(snapshot => {
+                console.log()
+                if(!snapshot.val())
+                    firebase.database().ref('users/'+uid).set({
+                        uid: uid,
+                        name: currentUser.displayName,
+                        photo: currentUser.photoURL
+                    })
+            })
+    }
+    createUserWithEmailAndPassword(email:string, password: string, name: string): Promise<any> {
+        console.log('name create user: ',name)
+        let promise = new Promise((resolve, reject) => { 
+            this.af.auth.createUser({email: email, password: password})
+                .then(user => {
+                    user.auth.updateProfile({
+                        displayName: name,
+                        photoURL: ''
+                    }) 
+                    .then(userCreated => { 
+                        console.log(userCreated);
+                        resolve(userCreated);
+                    })  
+                })
+        });
+
+        return promise;
            
     }
 

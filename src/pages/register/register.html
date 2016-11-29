@@ -21,8 +21,8 @@
     <ion-list class="list-form" padding>
 
       <ion-item>
-        <ion-label stacked>Name</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-label  stacked>Name</ion-label>
+        <ion-input #name type="text"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -38,7 +38,7 @@
     </ion-list>
 
     <div margin-top>
-      <button ion-button block color="primary" (click)="register(email.value, password.value)">
+      <button ion-button block color="primary" (click)="register(email.value, password.value, name.value)">
         SIGN UP
       </button>
     </div>

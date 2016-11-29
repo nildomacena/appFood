@@ -537,7 +537,7 @@ var _View_RegisterPage0 = (function (_super) {
     };
     _View_RegisterPage0.prototype._handle_click_47_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
-        var pd_0 = (this.context.register(this._TextInput_33_4.context.value, this._TextInput_41_4.context.value) !== false);
+        var pd_0 = (this.context.register(this._TextInput_33_4.context.value, this._TextInput_41_4.context.value, this._TextInput_25_4.context.value) !== false);
         return (true && pd_0);
     };
     _View_RegisterPage0.prototype._handle_click_54_0 = function ($event) {

@@ -20,8 +20,8 @@ export var UserService = (function () {
     UserService.prototype.getUserData = function () {
         return this.user;
     };
-    UserService.prototype.createUser = function (email, password) {
-        return this.fire.createUserWithEmailAndPassword(email, password);
+    UserService.prototype.createUser = function (email, password, name) {
+        return this.fire.createUserWithEmailAndPassword(email, password, name);
     };
     UserService.decorators = [
         { type: Injectable },

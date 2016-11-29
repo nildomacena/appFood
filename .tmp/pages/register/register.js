@@ -9,10 +9,10 @@ export var RegisterPage = (function () {
         this.userService = userService;
     }
     // register and go to home page
-    RegisterPage.prototype.register = function (email, password) {
+    RegisterPage.prototype.register = function (email, password, name) {
         var _this = this;
         console.log('email: ', email, '\npassword: ', password);
-        this.userService.createUser(email, password)
+        this.userService.createUser(email, password, name)
             .then(function (data) {
             console.log('Resultado createUser: ', data);
             _this.nav.setRoot(HomePage);

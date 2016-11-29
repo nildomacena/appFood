@@ -15,9 +15,9 @@ export class RegisterPage {
   }
 
   // register and go to home page
-  register(email, password) {
+  register(email, password, name) {
     console.log('email: ',email, '\npassword: ',password);
-    this.userService.createUser(email, password)
+    this.userService.createUser(email, password, name)
       .then(data => {
         console.log('Resultado createUser: ',data);
         this.nav.setRoot(HomePage);

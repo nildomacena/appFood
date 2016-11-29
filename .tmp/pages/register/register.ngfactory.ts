@@ -585,7 +585,7 @@ class _View_RegisterPage0 extends import1.AppView<import0.RegisterPage> {
   }
   private _handle_click_47_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>this.context.register(this._TextInput_33_4.context.value,this._TextInput_41_4.context.value)) !== false);
+    const pd_0:any = ((<any>this.context.register(this._TextInput_33_4.context.value,this._TextInput_41_4.context.value,this._TextInput_25_4.context.value)) !== false);
     return (true && pd_0);
   }
   private _handle_click_54_0($event:any):boolean {
