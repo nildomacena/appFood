@@ -104,7 +104,6 @@ export class FireService {
             Facebook.login(['user_friends', 'public_profile', 'email'])
                 .then(userFacebook => {
                     let credential = firebase.auth.FacebookAuthProvider.credential(userFacebook.authResponse.accessToken);
-                    console.log('credential no fetch: ', credential)
                     return Promise.resolve(credential);
                 })
         }
