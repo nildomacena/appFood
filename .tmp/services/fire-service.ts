@@ -14,8 +14,9 @@ export class FireService {
                 console.log('User logged (onAuthStateChanged)');
                 this.events.publish('user:created')
             }
-            else    
+            else{
                 console.log('User not logged (onAuthStateChanged)');
+            }
         });
     }
 
@@ -104,7 +105,6 @@ export class FireService {
             Facebook.login(['user_friends', 'public_profile', 'email'])
                 .then(userFacebook => {
                     let credential = firebase.auth.FacebookAuthProvider.credential(userFacebook.authResponse.accessToken);
-                    console.log('credential no fetch: ', credential)
                     return Promise.resolve(credential);
                 })
         }

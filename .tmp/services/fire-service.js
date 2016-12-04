@@ -13,8 +13,9 @@ export var FireService = (function () {
                 console.log('User logged (onAuthStateChanged)');
                 _this.events.publish('user:created');
             }
-            else
+            else {
                 console.log('User not logged (onAuthStateChanged)');
+            }
         });
     }
     FireService.prototype.getUser = function () {
@@ -94,7 +95,6 @@ export var FireService = (function () {
             Facebook.login(['user_friends', 'public_profile', 'email'])
                 .then(function (userFacebook) {
                 var credential = firebase.auth.FacebookAuthProvider.credential(userFacebook.authResponse.accessToken);
-                console.log('credential no fetch: ', credential);
                 return Promise.resolve(credential);
             });
         }

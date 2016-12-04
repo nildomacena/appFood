@@ -14,8 +14,9 @@ export class FireService {
                 console.log('User logged (onAuthStateChanged)');
                 this.events.publish('user:created')
             }
-            else    
+            else{
                 console.log('User not logged (onAuthStateChanged)');
+            }
         });
     }
 

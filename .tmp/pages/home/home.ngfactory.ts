@@ -293,7 +293,7 @@ class _View_HomePage0 extends import1.AppView<import0.HomePage> {
     this._text_31 = this.renderer.createText((null as any),'\n  ',(null as any));
     this._el_32 = this.renderer.createElement((null as any),'h3',(null as any));
     this.renderer.setElementAttribute(this._el_32,'text-center','');
-    this._text_33 = this.renderer.createText(this._el_32,'Restaurante blablablá',(null as any));
+    this._text_33 = this.renderer.createText(this._el_32,'Restaurante Maceió',(null as any));
     this._text_34 = this.renderer.createText((null as any),'\n\n  ',(null as any));
     this._el_35 = this.renderer.createElement((null as any),'div',(null as any));
     this.renderer.setElementAttribute(this._el_35,'class','list-items');

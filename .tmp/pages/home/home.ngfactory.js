@@ -220,7 +220,7 @@ var _View_HomePage0 = (function (_super) {
         this._text_31 = this.renderer.createText(null, '\n  ', null);
         this._el_32 = this.renderer.createElement(null, 'h3', null);
         this.renderer.setElementAttribute(this._el_32, 'text-center', '');
-        this._text_33 = this.renderer.createText(this._el_32, 'Restaurante blablablá', null);
+        this._text_33 = this.renderer.createText(this._el_32, 'Restaurante Maceió', null);
         this._text_34 = this.renderer.createText(null, '\n\n  ', null);
         this._el_35 = this.renderer.createElement(null, 'div', null);
         this.renderer.setElementAttribute(this._el_35, 'class', 'list-items');
